@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>Example for quote</title>
+	<!-- 	Stock price from Yahoo Finance
+		José Ballester, Jul 2015 	-->
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+/* $.getJSON("http://finance.yahoo.com/webservice/v1/symbols/MRL.MC/quote?format=json", {
+    format: "json"
+  })
+    .done(function( data ) {
+	document.write(data.list.resources[0].resource.fields.price);
+	}); */
+</script>
+
+<input type="text" id="symbol" value="MRL.MC">
+<input type="text" id="date" value="2015-07-17">
+<input type="button" onClick="getPriceButton();" value="Get price">
+<div id="result"></div>
+<script type="text/javascript">
+function getPriceButton() {
+  getPrice(document.getElementById("symbol").value, document.getElementById("date").value);
+}
+
+function getPrice( symbol, date ) {
+  var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22" + symbol + "%22%20and%20startDate%20%3D%20%22" + date + "%22%20and%20endDate%20%3D%20%22" + date +"%22&format=json&diagnostics=true&env=http%3A%2F%2Fdatatables.org%2Falltables.env&callback=";
+  $.getJSON(url, {
+    format: "json"
+  }).done(function( data ) {
+    document.getElementById("result").innerHTML = data.query.results.quote.Close;
+  });
+}
+</script>
+</body>
