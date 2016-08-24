@@ -1,0 +1,29 @@
+
+<template name="mainLayout">
+<head>
+  <title>perfilium</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  <main>
+    {{>Template.dynamic template=content}}
+  </main>
+</body>
+</template>
+
+<template name="blogHome">
+  <p>This is the home page of our blog</p>
+  <ul>
+    {{#each posts}}
+      <li><a href="{{_id}}/">{{title}}</a></li>
+    {{/each}}
+  </ul>
+</template>
+<template name="blogPost">
+  <p>
+    <a href="/">Back</a> <br/>
+    This is a single blog post with id {{id}}
+  </p>
+</template>
