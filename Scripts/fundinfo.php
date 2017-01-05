@@ -9,6 +9,8 @@ include('inc/simple_html_dom.php');
 /* 	Input: fund's ISIN as a GET variable
 		Available options:
 		- 'value' (default): last Net Asset Value (NAV)
+		- 'change': last change in %
+		- 'msid': Morningstar ID
 		- 'date' : date of the last NAV */
 
 if(!isset($_GET['isin'])) {
@@ -28,6 +30,10 @@ if(!isset($_GET['isin'])) {
 			// Option 'date'
 			$fundVLdate = $html->find('div[id=overviewQuickstatsDiv] table td[class="line heading"] span[class=heading]', 0)->innertext;
 	  	echo substr($fundVLdate, 6);
+		} else if($option == "change") {
+			/// Option 'value' or default
+			$fundVL = $html->find('div[id=overviewQuickstatsDiv] table td[class="line text"]', 1)->innertext;
+			echo str_replace(",", ".", substr($fundVL, 5));
 		} else {
 			// Option 'value' or default
 			$fundVL = $html->find('div[id=overviewQuickstatsDiv] table td[class="line text"]', 0)->innertext;
