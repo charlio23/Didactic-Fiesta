@@ -26,14 +26,18 @@ if(!isset($_GET['isin'])) {
 	} else {
 		$html = str_get_html(file_get_contents("https://www.morningstar.es".$fundlink->getAttribute("href")));
 		$option = (isset($_GET['option']) ? $_GET['option'] : "");
+
 		if($option == "date") {
 			// Option 'date'
 			$fundVLdate = $html->find('div[id=overviewQuickstatsDiv] table td[class="line heading"] span[class=heading]', 0)->innertext;
 	  	echo substr($fundVLdate, 6);
 		} else if($option == "change") {
-			/// Option 'value' or default
-			$fundVL = $html->find('div[id=overviewQuickstatsDiv] table td[class="line text"]', 1)->innertext;
-			echo str_replace(",", ".", substr($fundVL, 5));
+			// Option 'change'
+			$fundChange = $html->find('div[id=overviewQuickstatsDiv] table td[class="line text"]', 1)->innertext;
+			echo str_replace(",", ".", $fundChange);
+		} else if($option == "msid") {
+			// Option 'msid'
+			echo substr($fundlink->getAttribute("href"), strpos($fundlink->getAttribute("href"), "=")+1);
 		} else {
 			// Option 'value' or default
 			$fundVL = $html->find('div[id=overviewQuickstatsDiv] table td[class="line text"]', 0)->innertext;
