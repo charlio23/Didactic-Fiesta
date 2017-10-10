@@ -8,4 +8,5 @@ Just some code to learn and have fun.
 - Lots of love
 
 # Acknowledgements
-I would like to thank myself for the implementation of this project.
+I would like to thank Cesc Folch for the implementation of this project.
+  *Sponsored by conversordeletras.com* ⓒ
