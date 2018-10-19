@@ -1,2 +1,2 @@
 # Didactic Fiesta
-Just some code to learn and have fun. 
+Just some code to learn and have fun. :)
